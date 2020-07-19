@@ -12,3 +12,11 @@ export function login(data) {
         return Promise.reject('登录失败再试一次')
     }
 }
+
+export function getInfo(token) {
+    return Promise.resolve({
+        token,
+        userName: 'admin',
+        userAvatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif'
+    })
+}

@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Cookies from 'js-cookie'
 
 Vue.use(Router)
 
@@ -25,20 +24,10 @@ const createRouter = () => new Router({
 
 const router = createRouter()
 
-router.beforeEach((to, from, next) => {
-  const haveToken = Cookies.get('token')
-  console.log(to, from, haveToken)
-  next()
-  if (to.path === '/login') {
-    next()
-  } else {
-    if (haveToken) {
-      next()
-    } else {
-      next('/login')
-    }
-  }
+export function resetRouter() {
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher // reset router
+}
 
-})
 
 export default router
